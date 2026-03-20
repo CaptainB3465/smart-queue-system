@@ -1,6 +1,5 @@
 import React from 'react';
 import { useQueue, INDUSTRIES } from '../context/QueueContext';
-import QueueWorker from '../workers/queueWorker';
 
 const AdminPanel = () => {
     const { 
@@ -118,7 +117,6 @@ const AdminPanel = () => {
                     </tbody>
                 </table>
             </div>
-            <QueueWorker />
         </div>
     );
 };

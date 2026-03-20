@@ -9,11 +9,18 @@ const CustomerView = () => {
     const defaultService = INDUSTRIES[adminIndustry] ? INDUSTRIES[adminIndustry][0] : 'Unknown';
     const [service, setService] = useState(defaultService);
     const [isPriority, setIsPriority] = useState(false);
-    const [myTicketId, setMyTicketId] = useState(localStorage.getItem('myTicketId'));
+    const [myTaskId, setMyTaskId] = useState(localStorage.getItem('myTaskId'));
+    const [isJoining, setIsJoining] = useState(false);
 
-    const myTicket = queue.find(item => item.id === myTicketId);
-    const myPosition = waitingList.findIndex(item => item.id === myTicketId) + 1;
+    // The queue item is created by QueueWorker with originalTaskId linking back to the task doc
+    const myTicket = queue.find(item => item.originalTaskId === myTaskId);
+    const myPosition = waitingList.findIndex(item => item.originalTaskId === myTaskId) + 1;
     const estimatedWait = myPosition * parseInt(analytics.avgWaitTime || 5);
+
+    // Once the ticket appears in queue, clear the joining state
+    useEffect(() => {
+        if (myTicket) setIsJoining(false);
+    }, [myTicket]);
 
     // Keep service in sync if adminIndustry changes quickly on load
     useEffect(() => {
@@ -21,6 +28,17 @@ const CustomerView = () => {
             setService(INDUSTRIES[adminIndustry][0]);
         }
     }, [adminIndustry]);
+
+    // Show loading card while worker processes the task
+    if (isJoining && !myTicket) {
+        return (
+            <div className="card glass bounce-in" style={{ textAlign: 'center' }}>
+                <div className="badge-serving">Processing...</div>
+                <div className="queue-number-large pulse">⏳</div>
+                <p>Your ticket is being generated, please wait a moment...</p>
+            </div>
+        );
+    }
 
     if (myTicket && (myTicket.status === 'waiting' || myTicket.status === 'serving')) {
         if (myTicket.status === 'waiting') {
@@ -52,8 +70,8 @@ const CustomerView = () => {
                 <div className="queue-number-large success-pulse">#{myTicket.number}</div>
                 <p>Please proceed to the {myTicket.industry} counter now.</p>
                 <button className="btn-primary mt-20" onClick={() => {
-                    localStorage.removeItem('myTicketId');
-                    setMyTicketId(null);
+                    localStorage.removeItem('myTaskId');
+                    setMyTaskId(null);
                 }}>
                     I'm done
                 </button>
@@ -67,9 +85,10 @@ const CustomerView = () => {
             <form onSubmit={async (e) => {
                 e.preventDefault();
                 try {
-                    const ticketId = await joinQueue(name, adminIndustry, service, isPriority);
-                    localStorage.setItem('myTicketId', ticketId);
-                    setMyTicketId(ticketId);
+                    const taskId = await joinQueue(name, adminIndustry, service, isPriority);
+                    localStorage.setItem('myTaskId', taskId);
+                    setMyTaskId(taskId);
+                    setIsJoining(true);
                     setName('');
                 } catch (error) {
                     alert("Failed to join queue");

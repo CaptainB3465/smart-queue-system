@@ -6,6 +6,7 @@ import AdminPanel from './components/AdminPanel';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import SettingsView from './components/SettingsView';
 import Auth from './components/Auth';
+import QueueWorker from './workers/queueWorker';
 import './index.css';
 
 function AppContent() {
@@ -72,6 +73,10 @@ function AppContent() {
           {activeTab === 'analytics' && <AnalyticsDashboard />}
           {activeTab === 'settings' && <SettingsView />}
         </main>
+        {/* Global worker - always active regardless of tab */}
+        <div style={{ display: 'none' }}>
+          <QueueWorker />
+        </div>
         
         <footer className="app-footer glass">
           <div className="footer-status">
