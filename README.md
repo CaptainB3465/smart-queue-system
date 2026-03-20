@@ -1,4 +1,4 @@
-# 🚀 Smart Queue Management System
+#  Smart Queue Management System
 
 A modern **Smart Queue Management System (SQMS)** designed to reduce waiting time, improve service efficiency, and enhance user experience through digital queue handling.
 
@@ -9,7 +9,7 @@ The Smart Queue Management System replaces traditional waiting lines with a seam
 
 ---
 
-## ✨ Features
+##  Features
 
 ### 👤 User Side
 - Join queue digitally
@@ -17,13 +17,13 @@ The Smart Queue Management System replaces traditional waiting lines with a seam
 - Estimated waiting time
 - Notifications for upcoming turn
 
-### 🛠️ Admin Side
+###  Admin Side
 - Call next customer
 - Skip or recall queue numbers
 - Manage multiple queues
 - Monitor live queue status
 
-### 📊 System Features
+###  System Features
 - Real-time updates
 - Responsive and modern UI (glassmorphism design)
 - Secure authentication (Login/Signup)
@@ -31,7 +31,7 @@ The Smart Queue Management System replaces traditional waiting lines with a seam
 
 ---
 
-## 🖼️ UI Highlights
+##  UI Highlights
 - Modern login & signup interface
 - Smooth transitions and animations
 - Dashboard with dynamic background
@@ -41,16 +41,15 @@ The Smart Queue Management System replaces traditional waiting lines with a seam
 
 ## 🧠 Tech Stack
 
-> *(Update this section based on what you used)*
 
 **Frontend:**
-- HTML, CSS, JavaScript *(or React / Flutter)*
+- HTML, CSS, JavaScript
 
 **Backend:**
-- Node.js / Express *(or Django / Flask / Spring Boot)*
+- Node.js 
 
 **Database:**
-- MongoDB / MySQL / Firebase
+- Firebase
 
 ---
 
