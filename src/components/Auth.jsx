@@ -34,10 +34,14 @@ const Auth = () => {
             if (isLogin) {
                 await signInWithEmailAndPassword(auth, email, password);
             } else {
+                // Set flag to prevent QueueContext from rendering the dashboard
+                sessionStorage.setItem('isSigningUp', 'true');
+                
                 const userCred = await createUserWithEmailAndPassword(auth, email, password);
                 await setDoc(doc(db, "users", userCred.user.uid), { role: 'admin', industry });
                 
                 await signOut(auth); // Immediately sign them out
+                sessionStorage.removeItem('isSigningUp'); // Clear flag
                 
                 setIsLogin(true); // Manually swap the UI variable to Login
                 handleSwitchMode(); // Trigger visual CSS animation
@@ -47,6 +51,7 @@ const Auth = () => {
             }
         } catch (err) {
             setError(err.message);
+            sessionStorage.removeItem('isSigningUp');
             setLoading(false);
         }
     };
@@ -61,7 +66,26 @@ const Auth = () => {
         }}>
             <div className="auth-container card glass bounce-in" style={{ maxWidth: '400px', width: '100%', margin: '0', overflow: 'hidden' }}>
                 <div className={`auth-content ${animating}`}>
-                    <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>{isLogin ? 'Welcome Back' : 'Join Smart Queue'}</h2>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '25px', gap: '12px' }}>
+                        <div className="logo" style={{ width: '64px', height: '64px', fontSize: '1.8rem', borderRadius: '16px', boxShadow: '0 10px 25px rgba(99, 102, 241, 0.5)' }}>
+                            SQM
+                        </div>
+                        <h1 style={{ 
+                            fontSize: '1.5rem', 
+                            textAlign: 'center', 
+                            background: 'linear-gradient(to right, #ffffff, #a855f7)', 
+                            WebkitBackgroundClip: 'text', 
+                            WebkitTextFillColor: 'transparent', 
+                            fontWeight: '800',
+                            lineHeight: '1.2'
+                        }}>
+                            Smart Queue <br/> Management
+                        </h1>
+                    </div>
+
+                    <h2 style={{ textAlign: 'center', marginBottom: '20px', fontSize: '1.1rem', color: '#94a3b8', fontWeight: '500' }}>
+                        {isLogin ? 'Log in to your account' : 'Create an administrative account'}
+                    </h2>
                  
                     {error && <div className="badge-urgent" style={{ marginBottom: '15px' }}>{error}</div>}
                 

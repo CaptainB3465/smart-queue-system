@@ -43,6 +43,11 @@ export const QueueProvider = ({ children }) => {
         let profileUnsubscribe;
 
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            // Prevent auto-login flash during account creation
+            if (currentUser && sessionStorage.getItem('isSigningUp') === 'true') {
+                return; 
+            }
+
             if (currentUser) {
                 // Attach live snapshot and bind user state *after* profile completes
                 profileUnsubscribe = onSnapshot(doc(db, "users", currentUser.uid), (docSnap) => {

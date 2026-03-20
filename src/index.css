@@ -389,3 +389,110 @@ td { padding: 15px 12px; border-bottom: 1px solid var(--glass-border); }
   font-size: 0.8rem;
   color: var(--text-muted);
 }
+
+/* User Profile Header */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-email {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ================================= */
+/*       Responsive Media Queries    */
+/* ================================= */
+
+@media screen and (max-width: 900px) {
+  .app-header {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  /* Drop the navigation to a second scrollable row */
+  .tab-navigation {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+  }
+  
+  .tab-navigation button {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  
+  .user-profile {
+    order: 2;
+  }
+  
+  .brand {
+    order: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .brand h1 {
+    font-size: 1.2rem;
+  }
+  
+  .premium-tag {
+    font-size: 0.7rem;
+  }
+
+  .user-profile .user-email {
+    display: none; /* Hide email on tiny screens to preserve space for the brand/logout */
+  }
+
+  .card {
+    padding: 15px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .serving-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .desk-config {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .desk-selector, .service-selector {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .display-heading h2 {
+    font-size: 1.8rem;
+  }
+  
+  .now-serving-number {
+    font-size: 4rem;
+  }
+  
+  .serving-name {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tab-navigation button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
