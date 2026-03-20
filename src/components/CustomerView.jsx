@@ -59,6 +59,12 @@ const CustomerView = () => {
                             <strong>{estimatedWait || '5'} min</strong>
                         </div>
                     </div>
+                    <button className="btn-secondary mt-20" onClick={() => {
+                        localStorage.removeItem('myTaskId');
+                        setMyTaskId(null);
+                    }}>
+                        Add Another Customer
+                    </button>
                 </div>
             );
         }

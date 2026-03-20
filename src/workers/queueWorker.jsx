@@ -37,10 +37,7 @@ const QueueWorker = () => {
                             startedAt: serverTimestamp()
                         });
 
-                        // 2. Simulate processing time (models network/io delay)
-                        await new Promise(resolve => setTimeout(resolve, 2000));
-
-                        // 3. Process Business Logic: Move to high-priority if needed
+                        // 2. Process Business Logic: Move to high-priority if needed
                         await addDoc(queuesRef, {
                             userId: taskData.userId,
                             name: taskData.name,
