@@ -1,16 +1,63 @@
-# React + Vite
+# Smart Queue Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern **Smart Queue Management System (SQMS)** designed to reduce waiting time, improve service efficiency, and enhance user experience through digital queue handling.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📌 Overview
+The Smart Queue Management System replaces traditional waiting lines with a seamless digital solution. Users can join queues remotely, track their position in real time, and receive notifications when it's their turn, while administrators can efficiently manage and monitor queue operations.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+### 👤 User Side
+- Join queue digitally
+- Real-time queue position tracking
+- Estimated waiting time
+- Notifications for upcoming turn
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Admin Side
+- Call next customer
+- Skip or recall queue numbers
+- Manage multiple queues
+- Monitor live queue status
+
+### System Features
+- Real-time updates
+- Responsive and modern UI (glassmorphism design)
+- Secure authentication (Login/Signup)
+- Dashboard with analytics
+
+---
+
+## UI Highlights
+- Modern login & signup interface
+- Smooth transitions and animations
+- Dashboard with dynamic background
+- Clean and user-friendly layout
+
+---
+
+## 🧠 Tech Stack
+
+**Frontend:**
+- HTML, CSS, JavaScript, React, Vite
+
+**Backend:**
+- Node.js 
+
+**Database:**
+- Firebase
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/CaptainB3465/smart-queue-system.git
+cd smart-queue-system
+npm install
+npm run dev
+```
